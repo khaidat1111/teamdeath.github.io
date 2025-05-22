@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập - Death End</title>
+    <style>
+        body { margin: 0; font-family: 'Courier New', monospace; text-align: center; color: #fff; height: 100vh; display: flex; justify-content: center; align-items: center; background: url('https://images.unsplash.com/photo-1521216722819-50c109b56387?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed; background-size: cover; position: relative; overflow: hidden; }
+        body::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, #ff4500, #8a2be2, #1e90ff, #ffd700); background-size: 400%; opacity: 0.5; animation: gradient 15s ease infinite; z-index: -1; }
+        @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .container { max-width: 400px; padding: 20px; background: rgba(0, 0, 0, 0.8); border-radius: 15px; box-shadow: 0 0 20px #ff4500, 0 0 40px #8a2be2; animation: fadeIn 1s ease-in, neonGlow 1.5s infinite alternate; z-index: 1; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes neonGlow { from { box-shadow: 0 0 10px #ff4500, 0 0 20px #1e90ff; } to { box-shadow: 0 0 20px #ff4500, 0 0 40px #8a2be2; } }
+        h1 { color: #ffd700; text-shadow: 2px 2px #ff4500, 0 0 10px #fff; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        input, button { padding: 10px; margin: 10px; border: 2px solid #ff4500; border-radius: 10px; width: 80%; background: rgba(255, 255, 255, 0.1); color: #fff; font-size: 16px; transition: all 0.3s; }
+        input:hover, button:hover { transform: scale(1.05); border-color: #1e90ff; box-shadow: 0 0 10px #1e90ff; }
+        button { background: #ff4500; cursor: pointer; }
+        .logo { width: 120px; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .hidden { display: none; }
+        .error { color: #ff1744; font-weight: bold; }
+        label { font-size: 14px; text-shadow: 0 0 5px #fff; }
+        a { color: #ffd700; text-decoration: underline; cursor: pointer; }
+        a:hover { color: #1e90ff; text-shadow: 0 0 10px #1e90ff; }
+        .terms-popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; max-height: 80vh; background: rgba(0, 0, 0, 0.9); border-radius: 15px; box-shadow: 0 0 20px #ff4500, 0 0 40px #8a2be2; padding: 20px; z-index: 1000; overflow-y: auto; animation: fadeIn 0.5s; color: #1e90ff; text-align: left; }
+        .terms-popup h2 { color: #ffd700; text-shadow: 0 0 5px #fff; text-align: center; }
+        .terms-popup ul { list-style: none; padding: 0; }
+        .terms-popup li { margin: 10px 0; font-size: 14px; }
+        .terms-popup .close-btn { background: #ff1744; padding: 5px 10px; margin-top: 10px; font-size: 12px; width: auto; display: block; margin-left: auto; }
+    </style>
+</head>
+<body>
+    <div id="loginPage" class="container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbUIkHhtt3r7ZwvVj3YMHxkmxQELd5PbKARQ&s" alt="!!!" class="logo">
+        <h1>Đăng Nhập - Death End</h1>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Tên người dùng" required><br>
+            <input type="password" id="password" placeholder="Mật khẩu" required><br>
+            <label><input type="checkbox" id="termsCheckbox" required> Tôi đồng ý với <a href="#" onclick="showTerms()">điều khoản team</a></label><br>
+            <button type="submit">Đăng Nhập</button>
+        </form>
+        <p id="loginError" class="error hidden"></p>
+        <p><a href="register.html" target="_blank">Chưa có tài khoản? Đăng ký ngay!</a></p>
+    </div>
+
+    <div id="termsPopup" class="terms-popup hidden">
+        <h2>Nội Quy Team Death End</h2>
+        <ul>
+            <li><strong>Không chia sẻ hình ảnh hoặc video không phù hợp:</strong><br>Quy tắc: Cấm chia sẻ nội dung người lớn (18+) hoặc hình ảnh/video có mục đích xúc phạm hay thiếu tôn trọng người khác.<br>Mức phạt:<br>- Lần đầu: Cảnh báo.<br>- Tái phạm: Mute 1 ngày.<br>- Nhiều lần vi phạm: Ban vĩnh viễn.</li>
+            <li><strong>Giao tiếp văn minh:</strong><br>Quy tắc: Tránh sử dụng ngôn từ toxic, đặc biệt là xúc phạm cha mẹ người khác. Chửi bậy nhẹ có thể được thông cảm, nhưng những lời lẽ cực kỳ xúc phạm sẽ bị xử lý nghiêm.<br>Mức phạt:<br>- Xúc phạm cha mẹ người khác: Mute 1 ngày.<br>- Đe dọa/hạ nhục nghiêm trọng: Ban 7 ngày hoặc vĩnh viễn nếu tái phạm.</li>
+            <li><strong>Không quấy rối dưới mọi hình thức:</strong><br>Quy tắc: Những hành vi quấy rối tình dục hoặc bất kỳ hành vi không đứng đắn nào sẽ bị ban ngay lập tức.<br>Mức phạt: Ban vĩnh viễn.</li>
+            <li><strong>Cấm spam hoặc chia sẻ nội dung bạo lực/người lớn:</strong><br>Quy tắc: Không gửi tin nhắn lặp đi lặp lại hoặc chia sẻ video bạo lực hay nội dung người lớn (vd: máu me, chém nhau, nội dung tình dục).<br>Mức phạt:<br>- Lần đầu: Cảnh báo hoặc mute 6-12 giờ.<br>- Tái phạm: Mute 1-3 ngày.<br>- Nhiều lần vi phạm: Ban 7 ngày hoặc vĩnh viễn.</li>
+            <li><strong>Hợp tác và tôn trọng lẫn nhau:</strong><br>Quy tắc: Luôn tôn trọng thành viên khác, hợp tác trong các hoạt động team, và tuân thủ quy định chung.</li>
+        </ul>
+        <button class="close-btn" onclick="hideTerms()">Đóng</button>
+    </div>
+
+    <script>
+        let users = JSON.parse(localStorage.getItem('users')) || [{ username: "anonymous", password: "hacktivist123", email: "anonymous@team.vn" }, { username: "admin", password: "admin123", email: "admin@team.vn" }];
+        document.getElementById('loginForm').addEventListener('submit', function(e) { e.preventDefault(); const username = document.getElementById('username').value; const password = document.getElementById('password').value; const termsCheckbox = document.getElementById('termsCheckbox'); const errorMessage = document.getElementById('loginError'); if (!termsCheckbox.checked) { errorMessage.textContent = 'Vui lòng đồng ý với điều khoản team!'; errorMessage.classList.remove('hidden'); return; } const user = users.find(u => u.username === username && u.password === password); if (user) { localStorage.setItem('loggedInUser', username); window.location.href = 'dashboard.html'; } else { errorMessage.textContent = 'Sai tên người dùng hoặc mật khẩu!'; errorMessage.classList.remove('hidden'); } });
+        function showTerms() { document.getElementById('termsPopup').classList.remove('hidden'); }
+        function hideTerms() { document.getElementById('termsPopup').classList.add('hidden'); }
+    </script>
+</body>
+</html>

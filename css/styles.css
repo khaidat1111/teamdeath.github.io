@@ -1,0 +1,85 @@
+body { 
+    margin: 0; 
+    font-family: 'Courier New', monospace; 
+    background: linear-gradient(135deg, #1a0a1a, #2a1a2a, #3a2a3a); 
+    color: #fff; 
+    min-height: 100vh; 
+}
+.container { 
+    background: linear-gradient(45deg, #2a1a2a, #4a2a6a, #6a2a8a); 
+    padding: 30px; 
+    border: 3px solid #ff4500; 
+    border-radius: 15px; 
+    box-shadow: 0 0 25px #ff4500, 0 0 50px #8a2be2; 
+    text-align: center; 
+    animation: glow 3s ease infinite alternate; 
+}
+@keyframes glow { 
+    from { box-shadow: 0 0 25px #ff4500, 0 0 50px #8a2be2; }
+    to { box-shadow: 0 0 35px #ff4500, 0 0 70px #8a2be2; }
+}
+h2 { 
+    color: #ffd700; 
+    text-shadow: 0 0 15px #ff4500, 0 0 30px #ffd700; 
+    margin-bottom: 25px; 
+    font-size: 28px; 
+}
+.form-group { margin: 20px 0; }
+input { 
+    padding: 12px; 
+    width: 100%; 
+    background: rgba(255, 255, 255, 0.15); 
+    border: 2px solid #1e90ff; 
+    border-radius: 8px; 
+    color: #fff; 
+    font-family: 'Courier New', monospace; 
+    transition: all 0.3s; 
+}
+input:focus { 
+    border-color: #00bfff; 
+    box-shadow: 0 0 15px #00bfff; 
+    outline: none; 
+}
+button { 
+    padding: 12px 25px; 
+    background: linear-gradient(45deg, #ff4500, #ff8c00); 
+    border: 2px solid #ff4500; 
+    border-radius: 8px; 
+    color: #fff; 
+    cursor: pointer; 
+    transition: all 0.3s; 
+    font-size: 16px; 
+    text-transform: uppercase; 
+}
+button:hover { 
+    background: linear-gradient(45deg, #cc3700, #cc7a00); 
+    box-shadow: 0 0 20px #ff4500; 
+    transform: scale(1.05); 
+}
+.error { 
+    color: #ff6347; 
+    margin-top: 15px; 
+    font-size: 14px; 
+    text-shadow: 0 0 5px #ff6347; 
+}
+.logo { 
+    width: 120px; 
+    animation: bounce 2s infinite; 
+    margin-bottom: 25px; 
+    border: 2px solid #ffd700; 
+    border-radius: 50%; 
+    padding: 5px; 
+}
+@keyframes bounce { 
+    0%, 100% { transform: translateY(0); } 
+    50% { transform: translateY(-15px); } 
+}
+a { 
+    color: #1e90ff; 
+    text-decoration: none; 
+    transition: color 0.3s; 
+}
+a:hover { 
+    color: #00bfff; 
+    text-shadow: 0 0 10px #00bfff; 
+}

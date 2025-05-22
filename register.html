@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký - Death End</title>
+    <style>
+        body { 
+            margin: 0; 
+            font-family: 'Courier New', monospace; 
+            background: linear-gradient(135deg, #1a0a1a, #2a1a2a, #3a2a3a); 
+            color: #fff; 
+            min-height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+        }
+        .container { 
+            background: linear-gradient(45deg, #2a1a2a, #4a2a6a, #6a2a8a); 
+            padding: 30px; 
+            border: 3px solid #ff4500; 
+            border-radius: 15px; 
+            box-shadow: 0 0 25px #ff4500, 0 0 50px #8a2be2; 
+            text-align: center; 
+            animation: glow 3s ease infinite alternate; 
+        }
+        @keyframes glow { 
+            from { box-shadow: 0 0 25px #ff4500, 0 0 50px #8a2be2; }
+            to { box-shadow: 0 0 35px #ff4500, 0 0 70px #8a2be2; }
+        }
+        h2 { 
+            color: #ffd700; 
+            text-shadow: 0 0 15px #ff4500, 0 0 30px #ffd700; 
+            margin-bottom: 25px; 
+            font-size: 28px; 
+        }
+        .form-group { margin: 20px 0; }
+        input { 
+            padding: 12px; 
+            width: 100%; 
+            background: rgba(255, 255, 255, 0.15); 
+            border: 2px solid #1e90ff; 
+            border-radius: 8px; 
+            color: #fff; 
+            font-family: 'Courier New', monospace; 
+            transition: all 0.3s; 
+        }
+        input:focus { 
+            border-color: #00bfff; 
+            box-shadow: 0 0 15px #00bfff; 
+            outline: none; 
+        }
+        button { 
+            padding: 12px 25px; 
+            background: linear-gradient(45deg, #ff4500, #ff8c00); 
+            border: 2px solid #ff4500; 
+            border-radius: 8px; 
+            color: #fff; 
+            cursor: pointer; 
+            transition: all 0.3s; 
+            font-size: 16px; 
+            text-transform: uppercase; 
+        }
+        button:hover { 
+            background: linear-gradient(45deg, #cc3700, #cc7a00); 
+            box-shadow: 0 0 20px #ff4500; 
+            transform: scale(1.05); 
+        }
+        .error { 
+            color: #ff6347; 
+            margin-top: 15px; 
+            font-size: 14px; 
+            text-shadow: 0 0 5px #ff6347; 
+        }
+        .logo { 
+            width: 120px; 
+            animation: bounce 2s infinite; 
+            margin-bottom: 25px; 
+            border: 2px solid #ffd700; 
+            border-radius: 50%; 
+            padding: 5px; 
+        }
+        @keyframes bounce { 
+            0%, 100% { transform: translateY(0); } 
+            50% { transform: translateY(-15px); } 
+        }
+        a { 
+            color: #1e90ff; 
+            text-decoration: none; 
+            transition: color 0.3s; 
+        }
+        a:hover { 
+            color: #00bfff; 
+            text-shadow: 0 0 10px #00bfff; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbUIkHhtt3r7ZwvVj3YMHxkmxQELd5PbKARQ&s" alt="!!!" class="logo">
+        <h2>Đăng Ký</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <input type="text" id="username" placeholder="Tên đăng nhập" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" placeholder="Mật khẩu" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="code" placeholder="Nhập mã" required>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="terms" required> <label for="terms">Tôi đồng ý với điều khoản</label>
+            </div>
+            <button type="submit">Đăng Ký</button>
+            <div id="errorMessage" class="error"></div>
+        </form>
+        <p>Đã có tài khoản? <a href="index.html">Đăng nhập</a></p>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const code = document.getElementById('code').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (code !== 'DeadEndtop1') {
+                errorMessage.textContent = 'Mã không đúng. Vui lòng nhập "DeadEndtop1"';
+                return;
+            }
+
+            if (!username || !password) {
+                errorMessage.textContent = 'Vui lòng điền đầy đủ thông tin!';
+                return;
+            }
+
+            if (!document.getElementById('terms').checked) {
+                errorMessage.textContent = 'Vui lòng đồng ý với điều khoản!';
+                return;
+            }
+
+            // Lưu thông tin đăng nhập (mô phỏng)
+            localStorage.setItem('users', JSON.stringify([...(JSON.parse(localStorage.getItem('users')) || []), { username, password }]));
+            localStorage.setItem('loggedInUser', username);
+            window.location.href = 'dashboard.html';
+        });
+    </script>
+</body>
+</html>
